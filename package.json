@@ -1,0 +1,16 @@
+{
+  "name": "circuit-solver",
+  "version": "1.0.0",
+  "description": "Drop in a circuit image, get the missing values solved and highlighted.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

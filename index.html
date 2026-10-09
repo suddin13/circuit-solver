@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Circuit Solver</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <aside id="sidebar" class="sidebar" aria-label="Chat history">
+    <div class="sidebar-head">
+      <h2>History</h2>
+      <button id="newChatBtn" class="btn small">+ New</button>
+    </div>
+    <ul id="historyList" class="history-list"></ul>
+    <p id="historyEmpty" class="muted pad">No previous circuits yet.</p>
+  </aside>
+
+  <button id="toggleSidebar" class="toggle" aria-label="Toggle history panel" title="History">☰</button>
+
+  <main class="main">
+    <header class="topbar">
+      <h1>⚡ Circuit Solver</h1>
+    </header>
+
+    <section class="dashboard">
+      <!-- LEFT: prompt / conversation -->
+      <div class="panel" id="promptPanel">
+        <div id="dropView">
+          <div id="dropzone" class="dropzone" tabindex="0">
+            <div class="drop-icon">🖼️</div>
+            <h2>Paste an image of your circuit here</h2>
+            <p class="muted">Drag &amp; drop any image, press <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>V</kbd>, or click to browse</p>
+            <input id="fileInput" type="file" accept="image/*" hidden />
+          </div>
+        </div>
+
+        <div id="chatView" hidden>
+          <div class="original">
+            <img id="originalImg" alt="Original circuit" />
+          </div>
+          <div id="thread" class="thread"></div>
+          <form id="followForm" class="follow">
+            <input id="followInput" type="text" placeholder="Ask a follow-up (e.g. what if R2 = 4.7 kΩ?)" autocomplete="off" />
+            <button class="btn" type="submit">Send</button>
+          </form>
+        </div>
+
+        <div id="loading" class="loading" hidden>
+          <div class="spinner"></div>
+          <p>Analyzing circuit and solving for missing values…</p>
+        </div>
+        <p id="error" class="error" hidden></p>
+      </div>
+
+      <!-- RIGHT: edited image with highlighted answers -->
+      <div class="panel" id="solutionPanel">
+        <div id="solutionEmpty" class="placeholder">
+          <p class="muted">Your solved circuit will appear here, with the answers highlighted.</p>
+        </div>
+        <div id="solutionView" hidden>
+          <div class="solution-head">
+            <h3>Solution</h3>
+            <button id="downloadBtn" class="btn small">Download image</button>
+          </div>
+          <div class="canvas-wrap"><canvas id="solutionCanvas"></canvas></div>
+          <p id="summary" class="muted"></p>
+          <ol id="legend" class="legend"></ol>
+          <details id="stepsBox">
+            <summary>Show work</summary>
+            <ol id="steps"></ol>
+          </details>
+          <p id="notes" class="muted notes"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
